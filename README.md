@@ -69,7 +69,7 @@ All API keys are server-side only — nothing is exposed to the browser.
 
 ## What's Next
 
-The core chat interface is live. The next priorities are the vessel map — giving spatial context to the data already flowing through the chat — and the port clearance POC, which shifts chatPort from a query tool into a workflow orchestrator. Each feature extends the same MCP backbone: new tools, same architecture.
+The core chat interface is live. The next priorities are the vessel map — giving spatial context to the data already flowing through the chat — and expanding the MCP server to cover more of OCEANS-X's API catalogue, exploring how tool chaining can answer complex multi-step queries. Each feature extends the same MCP backbone: new tools, same architecture.
 
 ---
 
