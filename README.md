@@ -18,8 +18,8 @@ A conversational interface for querying vessel movements in plain English. Ask a
 ### Vessel Map (Coming Soon)
 An interactive map of Singapore's port waters showing real-time vessel positions. Query the chat and watch the map respond — bridging conversation with spatial awareness.
 
-### Port Clearance POC (Coming Soon)
-A proof-of-concept showing how OCEANS-X MCP servers could facilitate port clearance workflows — automating document checks, coordinating between agencies, and reducing manual handoffs in vessel arrival processing.
+### MCP Workflow Exploration (Coming Soon)
+Demonstrating how multiple OCEANS-X MCP tools can be chained together for multi-step maritime queries — showing the protocol's potential for orchestrating complex workflows beyond simple Q&A.
 
 ---
 
@@ -27,7 +27,7 @@ A proof-of-concept showing how OCEANS-X MCP servers could facilitate port cleara
 
 **Model Context Protocol (MCP)** is an open standard that lets AI models discover and use external tools without custom integration code. In chatPort, Claude doesn't have hardcoded knowledge of OCEANS-X APIs — it discovers available tools through MCP and decides which to call based on the user's question.
 
-This matters for maritime: OCEANS-X hosts 100+ APIs. MCP means adding a new data source is adding a tool definition, not rewriting application logic. The port clearance POC extends this further — orchestrating multi-step workflows across multiple APIs through a single conversational interface.
+This matters for maritime: OCEANS-X hosts 100+ APIs. MCP means adding a new data source is adding a tool definition, not rewriting application logic. The workflow exploration extends this further — chaining multiple tools to answer complex queries that span several API calls.
 
 ---
 
