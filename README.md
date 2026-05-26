@@ -1,16 +1,35 @@
-# ChatPort
+# chatPort
 
-**AI-powered vessel movement assistant for the Port of Singapore.**
+**AI-powered maritime explorer for the Port of Singapore.**
 
-ChatPort is an MCP server that wraps Singapore's OCEANS-X maritime data APIs, paired with a chatbot demo showing how AI-powered data access could be embedded in the OCEANS-X portal or any maritime application. Users ask natural language questions about vessel movements and get conversational answers backed by live data.
+Singapore is one of the world's busiest maritime hubs, yet most of the public knows little about the vessel movements happening in its waters every day. Maritime data exists, but it has never been made engaging for the public — or efficient for the industry.
+
+chatPort is a showcase of AI-powered features built on MPA Singapore's OCEANS-X platform, demonstrating how conversational AI and the Model Context Protocol (MCP) can transform raw maritime APIs into accessible, visual, and workflow-ready tools.
 
 [chatport.dev](https://chatport.dev)
 
 ---
 
-## Why I Built This
+## Features
 
-MPA Singapore launched OCEANS-X in April 2026 — a data exchange platform with 100+ maritime APIs. The APIs are powerful but require technical knowledge to query. I wanted to demonstrate how MCP (Model Context Protocol) could make these APIs accessible to non-technical maritime stakeholders through conversational AI, turning raw API endpoints into a natural language interface.
+### AI Chat Assistant (Live)
+A conversational interface for querying vessel movements in plain English. Ask about arrivals, departures, and scheduled movements — the AI selects the right OCEANS-X API, fetches live data, and responds conversationally.
+
+### Vessel Map (Coming Soon)
+An interactive map of Singapore's port waters showing real-time vessel positions. Query the chat and watch the map respond — bridging conversation with spatial awareness.
+
+### Port Clearance POC (Coming Soon)
+A proof-of-concept showing how OCEANS-X MCP servers could facilitate port clearance workflows — automating document checks, coordinating between agencies, and reducing manual handoffs in vessel arrival processing.
+
+---
+
+## Why MCP?
+
+**Model Context Protocol (MCP)** is an open standard that lets AI models discover and use external tools without custom integration code. In chatPort, Claude doesn't have hardcoded knowledge of OCEANS-X APIs — it discovers available tools through MCP and decides which to call based on the user's question.
+
+This matters for maritime: OCEANS-X hosts 100+ APIs. MCP means adding a new data source is adding a tool definition, not rewriting application logic. The port clearance POC extends this further — orchestrating multi-step workflows across multiple APIs through a single conversational interface.
+
+---
 
 ## Tech Stack
 
@@ -23,19 +42,10 @@ MPA Singapore launched OCEANS-X in April 2026 — a data exchange platform with 
 | Data Source | OCEANS-X API (MPA Singapore) |
 | Hosting | Railway |
 
-## Key Features
-
-- **Natural language queries** — ask about arrivals, departures, and scheduled movements in plain English
-- **Live data** — connected to MPA Singapore's OCEANS-X platform (updated hourly)
-- **MCP architecture** — AI model discovers and calls tools through the Model Context Protocol, not hardcoded integrations
-- **Token and cost transparency** — every response shows input/output tokens and estimated cost
-- **Maritime-themed UI** — dark, professional chat interface styled for portal embedding
-- **Zero build step** — frontend is plain HTML/CSS/JS, no Node.js required
-
 ## Architecture
 
 ```
-Browser (Chat UI)
+Browser (Chat UI / Map / Clearance POC)
   |
   |  POST /api/chat
   v
@@ -48,6 +58,7 @@ FastAPI Backend
   |     |-- get_vessel_departures
   |     |-- get_vessels_due_to_arrive
   |     |-- get_vessels_due_to_depart
+  |     |-- (more tools planned)
   |
   v
 OCEANS-X API (MPA Singapore)
@@ -56,17 +67,9 @@ OCEANS-X API (MPA Singapore)
 
 All API keys are server-side only — nothing is exposed to the browser.
 
-## What is MCP?
-
-**Model Context Protocol (MCP)** is an open standard that lets AI models access external tools and data sources in a structured, discoverable way. Think of it as a USB-C port for AI — any MCP-compatible model can plug into any MCP server and use its tools without custom integration code.
-
-In this project, the MCP server exposes four tools for querying vessel data. Claude discovers these tools automatically and decides when to call them based on the user's question.
-
 ## What's Next
 
-The core integration is working: ask a question, get live vessel data. The next priorities are around capability and presentation: streaming responses to reduce perceived latency, and chart generation so users can visualise vessel movement patterns rather than reading text summaries.
-
-The bigger opportunity is expanding the MCP server to cover more of OCEANS-X's API catalogue — anchorage data, port facilities, weather conditions — building toward a comprehensive maritime intelligence assistant. Each additional tool makes the conversational interface more valuable as a single point of access to the platform.
+The core chat interface is live. The next priorities are the vessel map — giving spatial context to the data already flowing through the chat — and the port clearance POC, which shifts chatPort from a query tool into a workflow orchestrator. Each feature extends the same MCP backbone: new tools, same architecture.
 
 ---
 
