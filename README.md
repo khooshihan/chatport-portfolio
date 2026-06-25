@@ -142,6 +142,18 @@ This project demonstrates how MCP can make these APIs accessible to non-technica
 
 ---
 
+## Release Notes
+
+**Latest: [v1.5.1](https://github.com/khooshihan/chatport_demo/releases/tag/v1.5.1) — Chat Rendering & Map Narrative Accuracy** (2026-06-25)
+
+- The Vessel Map assistant now describes vessel movements using coordinates and general areas instead of guessing specific terminal names — so its descriptions always match the positions shown on the map
+- Chat replies render formatting (headings, tables, lists, links) consistently across both the main chat and the map panel
+- Added an automated frontend test suite that runs in CI to catch formatting regressions before release
+
+See the [full release history](https://github.com/khooshihan/chatport_demo/releases) for earlier versions.
+
+---
+
 ## License
 
 MIT
