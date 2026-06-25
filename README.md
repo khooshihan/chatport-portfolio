@@ -15,8 +15,8 @@ chatPort is a showcase of AI-powered features built on MPA Singapore's OCEANS-X 
 ### AI Chat Assistant (Live)
 A conversational interface for querying vessel movements in plain English. Ask about arrivals, departures, and scheduled movements — the AI selects the right OCEANS-X API, fetches live data, and responds conversationally.
 
-### Vessel Map (Coming Soon)
-An interactive map of Singapore's port waters showing real-time vessel positions. Query the chat and watch the map respond — bridging conversation with spatial awareness.
+### Vessel Map (Live)
+An interactive map of Singapore's port waters showing real-time vessel positions. Ask the map assistant in plain language — filter by vessel type, flag, or status, look up a specific ship, or replay a vessel's movement trail over the past 24 hours — and watch the map respond, bridging conversation with spatial awareness.
 
 ### MCP Workflow Exploration (Coming Soon)
 Demonstrating how multiple OCEANS-X MCP tools can be chained together for multi-step maritime queries — showing the protocol's potential for orchestrating complex workflows beyond simple Q&A.
@@ -35,7 +35,7 @@ This matters for maritime: OCEANS-X hosts 100+ APIs. MCP means adding a new data
 
 | Layer | Technology |
 |---|---|
-| MCP Server | Python, FastMCP |
+| MCP Servers | Python, FastMCP |
 | Backend | Python, FastAPI, Anthropic SDK |
 | Frontend | HTML, CSS, JavaScript |
 | AI Model | Claude Sonnet 4.6 |
@@ -47,24 +47,22 @@ This matters for maritime: OCEANS-X hosts 100+ APIs. MCP means adding a new data
 ## Architecture
 
 ```
-Browser (Chat UI / Map / Clearance POC)
+Browser (Chat UI / Vessel Map)
   |
-  |  POST /api/chat
+  |  POST /api/chat  ·  /api/map-chat
   v
 FastAPI Backend
   |
   |-- Claude API (reasoning + tool selection)
   |
-  |-- MCP Server (stdio subprocess)
-  |     |-- get_vessel_arrivals
-  |     |-- get_vessel_departures
-  |     |-- get_vessels_due_to_arrive
-  |     |-- get_vessels_due_to_depart
-  |     |-- (more tools planned)
+  |-- MCP Servers (stdio subprocesses)
+  |     |-- oceans-x-traffic    — arrivals, departures, due-to, daily shipping state
+  |     |-- oceans-x-positions  — live positions, particulars, movement trails
+  |     |-- oceans-x-weather    — realtime wind/rainfall + forecasts
   |
   v
 OCEANS-X API (MPA Singapore)
-  Live vessel movement data — updated hourly
+  Live maritime data — vessel positions polled every ~15 minutes
 ```
 
 All API keys are server-side only — nothing is exposed to the browser.
