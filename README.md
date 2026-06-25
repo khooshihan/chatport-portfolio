@@ -71,86 +71,13 @@ All API keys are server-side only — nothing is exposed to the browser.
 
 ---
 
-## Setup
-
-### Prerequisites
-
-- Python 3.12+
-- An [OCEANS-X API key](https://oceans-x.mpa.gov.sg) (free registration)
-- An [Anthropic API key](https://console.anthropic.com)
-
-### Installation
-
-```bash
-# Clone the repo
-git clone https://github.com/khooshihan/chatport_demo.git
-cd chatport_demo
-
-# Create and activate a virtual environment
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Configure environment
-cp .env.example .env
-# Edit .env with your API keys
-```
-
-### Running
-
-```bash
-cd demo-app/backend
-uvicorn main:app --reload --port 8000
-```
-
-Open http://localhost:8000 in your browser.
-
-The FastAPI backend automatically spawns the MCP server as a subprocess — no separate process needed.
-
----
-
-## Project Structure
-
-```
-chatport_demo/
-├── mcp-server/
-│   ├── server.py              # FastMCP server — 4 vessel movement tools
-│   └── requirements.txt
-├── demo-app/
-│   ├── backend/
-│   │   ├── main.py            # FastAPI app, Claude tool-use loop, cost tracking
-│   │   ├── mcp_client.py      # MCP client (stdio subprocess transport)
-│   │   └── requirements.txt
-│   └── frontend/
-│       ├── index.html         # Chat UI
-│       ├── style.css          # Maritime dark theme
-│       └── app.js             # Chat logic, token display
-├── .env.example
-├── .gitignore
-└── README.md
-```
-
----
-
 ## About OCEANS-X
 
 OCEANS-X is MPA Singapore's (Maritime and Port Authority) data and API exchange platform, launched April 2026. It's the successor to SG-MDH (Singapore Maritime Data Hub) and hosts 100+ APIs and datasets for the maritime ecosystem.
 
 This project demonstrates how MCP can make these APIs accessible to non-technical users through conversational AI — and how they can power operational workflows.
 
----
-
-## Release Notes
-
-**Latest: [v1.5.1](https://github.com/khooshihan/chatport_demo/releases/tag/v1.5.1) — Chat Rendering & Map Narrative Accuracy** (2026-06-25)
-
-- The Vessel Map assistant now describes vessel movements using coordinates and general areas instead of guessing specific terminal names — so its descriptions always match the positions shown on the map
-- Chat replies render formatting (headings, tables, lists, links) consistently across both the main chat and the map panel
-- Added an automated frontend test suite that runs in CI to catch formatting regressions before release
-
-See the [full release history](https://github.com/khooshihan/chatport_demo/releases) for earlier versions.
+Release notes for each version are published under this repository's [Releases](https://github.com/khooshihan/chatport-portfolio/releases).
 
 ---
 
